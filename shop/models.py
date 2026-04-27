@@ -9,3 +9,12 @@ class Product(models.Model):
     rating = models.PositiveIntegerField()
     stock = models.PositiveIntegerField()
     is_available = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+    
+class Order(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    delivery_address = models.CharField(max_length=255)
+    create_at = models.DateTimeField(auto_now_add=True)
+
